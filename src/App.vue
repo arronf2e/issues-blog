@@ -11,6 +11,9 @@
 import Navbar from '@/components/Navbar'
 export default {
   name: 'app',
+  mounted () {
+    
+  },
   components: {
     Navbar
   }

@@ -5,7 +5,7 @@
         <a href="/" class="g-nav-wrap-l-logo"><img src="../assets/imgs/logo.png" alt=""></a>
         <div class="nav-list">
           <router-link to="/" active-class="current" exact>
-            <span>首页</span>
+            <span>首页{{ name }}</span>
           </router-link>
           <router-link to="/about" active-class="current" exact>
             <span>关于</span>
@@ -18,25 +18,111 @@
           <input type="text" placeholder="按回车搜索哦" @keyup.enter="searchFn" v-model="kw"/>
         </div>
         <div class="user">
-          <button>登录</button>
+          <button @click="showModal">登录</button>
         </div>
       </div>
     </div>
+    <vodal :show="show" animation="rotate" @hide="show = false">
+      <div class="modal">
+        <h2 class="modal-title">登录</h2>
+        <div class="modal-content">
+          <div v-if="!signup">
+            <div class="input-wrap">
+              <input type="text" placeholder="昵称" v-model="signinName"/>
+            </div>
+            <div class="input-wrap">
+              <input type="password" placeholder="密码" v-model="signinPwd"/>
+            </div>
+          </div>
+          <div v-else>
+            <div class="input-wrap">
+              <input type="text" placeholder="昵称" v-model="signupName" />
+            </div>
+            <div class="input-wrap">
+              <input type="password" placeholder="邮箱" v-model="signupEmail"/>
+            </div>
+            <div class="input-wrap">
+              <input type="password" placeholder="密码" v-model="signupPwd"/>
+            </div>
+            <div class="input-wrap">
+              <input type="password" placeholder="重复密码" v-model="signupRepwd"/>
+            </div>
+          </div>
+          <div class="button-wrap" v-if="signup">
+            <a href="javascript:;" class="signin-btn" @click="signupConfirm">
+              确认注册
+            </a>
+            <a href="javascript:;" class="signin-btn" @click="signinFn">
+              直接登录
+            </a>
+          </div>
+          <div v-else>
+            <div class="button-wrap">
+              <a href="javascript:;" class="signin-btn" @click="signinConfirm">
+                立即登录
+              </a>
+            </div>
+            <div class="button-wrap">
+              <a href="javascript:;" class="signin-btn" @click="signupFn">
+                我要注册
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </vodal>
   </nav>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        kw: ''
+import { mapState } from 'vuex'
+export default {
+  data() {
+    return {
+      kw: '',
+      show: false,
+      signup: false,
+      signinName: '',
+      signinPwd: '',
+      signupName: '',
+      signupEmail: '',
+      signupPwd: '',
+      signupRepwd: ''
+    }
+  },
+  computed: {
+    ...mapState({
+      name: ({user}) => user.name
+    })
+  },
+  methods: {
+    searchFn() {
+      
+    },
+    showModal() {
+      if(!this.show) {
+        this.show = true
+        this.signup = false
       }
     },
-    methods: {
-      searchFn() {
-        console.log(this.kw)
+    signupFn() {
+      this.signup = true
+    },
+    signinFn() {
+      this.signup = false
+    },
+    signinConfirm() {
+      console.log('signin')
+    },
+    signupConfirm() {
+      var params  = {
+        username: this.signupName,
+        password: this.signupRepwd,
+        email: this.signupEmail
       }
+      // this.$store.state.user.dispatch('SIGN_IN', params)
     }
   }
+}
 </script>
 <style lang="less">
 @import '../assets/less/color.less';
@@ -152,6 +238,71 @@
           border-radius: 4px;
           transform: translate3d(0,0,0);
           transition: color .2s linear,background-color .2s linear,border .2s linear;
+        }
+      }
+    }
+  }
+  .vodal-dialog {
+    width: 300px !important;
+    height: auto !important;
+    margin: auto !important;
+    border-radius: 12px;
+    padding: 25px;
+    box-sizing: border-box;
+    position: relative;
+    top: 90px;
+    .modal {
+      .modal-title {
+        font-size: 20px;
+        text-align: center;
+        color: #000;
+      }
+      .modal-content {
+        color: #f0f0f0;
+        margin-top: 16px;
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+        .input-wrap {
+          &:not(first-child) {
+            margin-top: 18px;
+          }
+          input {
+            width: 100%;
+            height: 44px;
+            padding: 0 14px;
+            background: #f4f7f7;
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            box-sizing: border-box;
+            border: none;
+            font-size: 15px;
+          }
+        }
+        .button-wrap {
+          .signin-btn {
+            text-decoration: none;
+            margin-top: 18px;
+            background: @mainColor;
+            color: #fff;
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+            font-size: 15px;
+            line-height: 40px;
+            border-radius: 4px;
+            &:hover {
+              -webkit-transform: translateY(-1px);
+              -ms-transform: translateY(-1px);
+              transform: translateY(-1px);
+              box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+            }
+          }
         }
       }
     }
