@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <transition name="slideFade" mode="out-in">
+    <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>
@@ -18,21 +18,15 @@ export default {
 </script>
 
 <style lang="less">
-// .slideFade-enter-active,
-// .slideFade-leave-active {
-//   transition: all .2s cubic-bezier(0.66, 0.1, 0.38, 1.45);
-//   width: 100%;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   opacity: 1;
-// }
-// .slideFade-enter {
-//   transform: translateX(100%) scale(.3);
-//   opacity: 0;
-// }
-// .slideFade-leave-active {
-//   transform: translateX(-100%) scale(.3);
-//   opacity: 0;
-// }
+.fade-enter-active, .fade-leave-active {
+    transition: all 0.3s ease;
+}
+.fade-enter {
+    opacity: 1;
+    transform: translate3d(0, 100px, 0);
+}
+.fade-leave-active {
+    opacity: 0;
+    transform: translate3d(100px, 0, 0);
+}
 </style>

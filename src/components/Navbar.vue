@@ -4,10 +4,10 @@
       <div class="g-nav-wrap-l">
         <a href="/" class="g-nav-wrap-l-logo"><img src="../assets/imgs/logo.png" alt=""></a>
         <div class="nav-list">
-          <router-link to="/">
+          <router-link to="/" active-class="current" exact>
             <span>首页</span>
           </router-link>
-          <router-link to="/about">
+          <router-link to="/about" active-class="current" exact>
             <span>关于</span>
           </router-link>
         </div>
@@ -76,6 +76,18 @@
           img {
             width: 28px;
             height: 28px;
+          }
+        }
+        .current {
+          &:after {
+            content: "";
+            position: absolute;
+            height: 3px;
+            left: 24px;
+            right: 24px;
+            bottom: 0;
+            border-radius: 3px;
+            background: #eded63;
           }
         }
       }
