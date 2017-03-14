@@ -24,7 +24,7 @@
     </div>
     <vodal :show="show" animation="rotate" @hide="show = false">
       <div class="modal">
-        <h2 class="modal-title">登录</h2>
+        <h2 class="modal-title">{{ !signup ? '登录' : '注册'}}</h2>
         <div class="modal-content">
           <div v-if="!signup">
             <div class="input-wrap">
@@ -39,7 +39,7 @@
               <input type="text" placeholder="昵称" v-model="signupName" />
             </div>
             <div class="input-wrap">
-              <input type="password" placeholder="邮箱" v-model="signupEmail"/>
+              <input type="email" placeholder="邮箱" v-model="signupEmail"/>
             </div>
             <div class="input-wrap">
               <input type="password" placeholder="密码" v-model="signupPwd"/>
@@ -74,7 +74,7 @@
   </nav>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState,mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -91,10 +91,12 @@ export default {
   },
   computed: {
     ...mapState({
-      name: ({user}) => user.name
+      name: ({user}) => user.name,
+      loginState: ({user}) =>user.loginState
     })
   },
   methods: {
+    ...mapActions(['signUp', 'signIn']),
     searchFn() {
       
     },
@@ -111,15 +113,36 @@ export default {
       this.signup = false
     },
     signinConfirm() {
-      console.log('signin')
+      if(!this.signinName || !this.signinPwd) {
+        this.$toast.error('','请填写完整信息')
+        return
+      }
+      var params  = {
+        "username": this.signinName,
+        "password": this.signinPwd
+      }
+      this.signIn(params)
     },
     signupConfirm() {
-      var params  = {
-        username: this.signupName,
-        password: this.signupRepwd,
-        email: this.signupEmail
+      var mailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      if(!this.signupName || !this.signupRepwd || !this.signupEmail || !this.signupPwd) {
+        this.$toast.error('','请填写完整信息')
+        return
       }
-      // this.$store.state.user.dispatch('SIGN_IN', params)
+      if(!mailReg.test(this.signupEmail)) {
+        this.$toast.error('','邮箱格式错误')
+        return
+      }
+      if(this.signupPwd != this.signupRepwd) {
+        this.$toast.error('','两次密码输入不一致')
+        return
+      }
+      var params  = {
+        "username": this.signupName,
+        "password": this.signupRepwd,
+        "email": this.signupEmail
+      }
+      this.signUp(params)
     }
   }
 }
@@ -218,7 +241,7 @@ export default {
         button {
           display: inline-block;
           margin-bottom: 0;
-          font-weight: 400;
+          font-weight: 600;
           color: #fff;
           vertical-align: middle;
           -ms-touch-action: manipulation;
@@ -227,7 +250,7 @@ export default {
           outline: none;
           background-image: none;
           background-color: @mainColor;
-          border: 1px solid #d7dde4;
+          border: 2px solid #d7dde4;
           white-space: nowrap;
           line-height: 1.5;
           -webkit-user-select: none;

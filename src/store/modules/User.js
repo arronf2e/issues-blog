@@ -1,30 +1,42 @@
 const state = {
-  name: 'arron'
+  name: 'arron',
+  loginState: ''
 }
 
 const mutations = {
-
+  update_login_state(state, result) {
+    state.loginState = result
+  }
 }
-
-// const actions = {
-//   [SIGN_IN](state, res) {
-//     console.log(res)
-//     Bmob.Cloud.run('test', res, {
-//       success: function(result) {
-//         console.log(JSON.parse(result))
-//       },
-//       error: function(error) {
-//       }
-//     })
-//   }
-// }
+const actions = {
+  signUp(state, res) {
+    Bmob.Cloud.run('SignUp', res, {
+      success: function(result) {
+        
+      },
+      error: function(error) {
+        
+      }
+    })
+  },
+  signIn(context, res) {
+    Bmob.Cloud.run('SignIn', res, {
+      success: function(result) {
+        context.commit('update_login_state', result)
+      },
+      error: function(error) {
+        context.commit('update_login_state', error)
+      }
+    })
+  }
+}
 
 const getters = {
 
 }
 export default {
   state,
-  // actions,
+  actions,
   mutations,
   getters
 }
