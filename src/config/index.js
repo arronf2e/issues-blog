@@ -5,7 +5,7 @@ export default {
   /**
    * API
    */
-  repo: 'arronf2e/writings', // Which repository you stored the posts
+  repo: 'arronf2e/blog', // Which repository you stored the posts
   path: 'posts',
   branch: 'master'
 

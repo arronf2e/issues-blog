@@ -5,7 +5,7 @@
         <a href="/" class="g-nav-wrap-l-logo"><img src="../assets/imgs/logo.png" alt=""></a>
         <div class="nav-list">
           <router-link to="/" active-class="current" exact>
-            <span>首页{{ name }}</span>
+            <span>首页</span>
           </router-link>
           <router-link to="/about" active-class="current" exact>
             <span>关于</span>
@@ -75,7 +75,12 @@
 </template>
 <script>
 import { mapState,mapActions } from 'vuex'
+import Cookies from 'js-cookie'
 export default {
+  mounted () {
+    var id = Cookies.get('id')
+    console.log(id)
+  },
   data() {
     return {
       kw: '',
@@ -91,9 +96,14 @@ export default {
   },
   computed: {
     ...mapState({
-      name: ({user}) => user.name,
-      loginState: ({user}) =>user.loginState
+      loginFailed: ({user}) =>user.loginFailed,
+      userInfo: ({user}) =>user.userInfo
     })
+  },
+  watch: {
+    loginFailed(val) {
+      this.$toast.error('','账号或者密码错误')
+    }
   },
   methods: {
     ...mapActions(['signUp', 'signIn']),

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import About from '@/views/About'
+import List from '@/views/List'
 
 Vue.use(Router)
 
@@ -12,9 +12,9 @@ export default new Router({
       name: 'Hello',
       component: Hello
     }, {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/list',
+      name: 'list',
+      component: List
     }
   ]
 })
