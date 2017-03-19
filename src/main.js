@@ -8,6 +8,7 @@ import Vodal from 'vodal'
 import "vodal/fade.css"
 import "vodal/rotate.css"
 import Toast from './components/toast'
+import _ from 'lodash'
 
 Toast.config({
   duration: 3000,
@@ -15,6 +16,7 @@ Toast.config({
 })
 
 Vue.use(Toast)
+Vue.use(_)
 Vue.component(Vodal.name, Vodal)
 Vue.config.productionTip = false
 /* eslint-disable no-new */

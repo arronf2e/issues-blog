@@ -197,18 +197,18 @@ export default {
             height: 28px;
           }
         }
-        .current {
-          &:after {
-            content: "";
-            position: absolute;
-            height: 3px;
-            left: 24px;
-            right: 24px;
-            bottom: 0;
-            border-radius: 3px;
-            background: #eded63;
-          }
-        }
+        // .current {
+        //   &:after {
+        //     content: "";
+        //     position: absolute;
+        //     height: 3px;
+        //     left: 24px;
+        //     right: 24px;
+        //     bottom: 0;
+        //     border-radius: 3px;
+        //     background: #eded63;
+        //   }
+        // }
       }
     }
     &-r {

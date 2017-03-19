@@ -4,18 +4,21 @@
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
+    <Zfooter></Zfooter>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
+import Zfooter from '@/components/Zfooter'
 export default {
   name: 'app',
   mounted () {
     
   },
   components: {
-    Navbar
+    Navbar,
+    Zfooter
   }
 }
 </script>
