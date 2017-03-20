@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="g">
     <div class="wrap">
       <div class="main">
         <div class="main-content">
@@ -27,7 +27,10 @@ export default {
 </script>
 <style lang="less">
 @import '../assets/less/color.less';
-.wrap {
+.g {
+  min-height: 100%;
+  padding: 60px 0 40px 0;
+  .wrap {
     padding-top: 20px;
     padding-bottom: 20px;
     .main {
@@ -44,4 +47,5 @@ export default {
       }
     }
   }
+}
 </style>

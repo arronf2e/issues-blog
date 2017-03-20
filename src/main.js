@@ -9,11 +9,16 @@ import "vodal/fade.css"
 import "vodal/rotate.css"
 import Toast from './components/toast'
 import _ from 'lodash'
+import 'prismjs/themes/prism.css'
 
 Toast.config({
   duration: 3000,
   position:'top center'
 })
+
+router.afterEach((to,from) => {
+  window.scroll(0,0)
+}) 
 
 Vue.use(Toast)
 Vue.use(_)

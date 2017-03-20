@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="loading" v-if="loading">加载中...</div>
+    <Loading v-if="loading"></Loading>
     <div class="list" v-else>
       <div class="list-post" v-for="post in lists">
         <div class="title" @click="goPost(post.sha)">
@@ -18,6 +18,7 @@ import api from '@/api'
 import conf from '@/config'
 import Friends from '@/components/Friends'
 import Mailme from '@/components/Mailme'
+import Loading from '@/components/Loading'
 export default {
   created () {
     this.getPostsList()
@@ -49,7 +50,8 @@ export default {
   },
   components: {
     Friends,
-    Mailme
+    Mailme,
+    Loading
   }
 }
 </script>
@@ -72,6 +74,7 @@ export default {
       }
       .date {
         font-size: 12px;
+        color: #333;
       }
     }
   }

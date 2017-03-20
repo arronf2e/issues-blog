@@ -38,7 +38,7 @@ function postName(val) {
 }
 
 export default {
-  getList () {
+  getList() {
     if(Cache.get('lists')) {
       return Promise.resolve(Cache.get('lists'))
     } else {
@@ -56,6 +56,23 @@ export default {
         return lists
       }, error => {
         console.log(error)
+      })
+    }
+  },
+  getPost(hash) {
+    const cacheKey = 'post.' + hash
+    const httpOpts = {
+      // https://developer.github.com/v3/media/#raw-1 ，这个一定要！
+      headers: { Accept: 'application/vnd.github.v3.raw' }
+    }
+    if(Cache.has(cacheKey)) {
+      return Promise.resolve(Cache.get(cacheKey))
+    } else {
+      return axios.get(getPostUrl(hash), httpOpts).then(res => {
+        Cache.set(cacheKey, res.data)
+        return res.data
+      }, err => {
+        console.log(err)
       })
     }
   }

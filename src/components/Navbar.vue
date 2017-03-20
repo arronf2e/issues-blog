@@ -19,6 +19,12 @@
         </div>
         <div class="user">
           <button @click="showModal">登录</button>
+          <div class="dropdown">
+            <span>Mouse over me</span>
+            <div class="dropdown-content">
+              <p>Hello World!</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -164,6 +170,7 @@ export default {
   background: @mainColor;
   box-shadow: 0 1px 2px rgba(0,0,0,.05);
   color: #fff;
+  margin-bottom: -60px; 
   &-wrap {
     width: 1000px;
     height: 100%;

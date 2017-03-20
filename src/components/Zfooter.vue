@@ -11,10 +11,11 @@ export default {
 <style lang="less">
 @import '../assets/less/color.less';
 footer {
-  height: 20px;
+  height: 40px;
   text-align: center;
   padding: 4px 0;
   color: @mainColor;
+  margin-top: -40px; 
   a {
     color: @mainColor;
     text-decoration: none;

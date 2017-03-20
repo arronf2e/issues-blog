@@ -24,6 +24,9 @@ export default {
 </script>
 
 <style lang="less">
+#app {
+  height: 100%;
+}
 .fade-enter-active, .fade-leave-active {
     transition: all 0.3s ease;
 }
