@@ -1,3 +1,4 @@
+<script src="../../../../test.js"></script>
 <template>
   <div id="app">
     <Navbar></Navbar>
@@ -14,7 +15,7 @@ import Zfooter from '@/components/Zfooter'
 export default {
   name: 'app',
   mounted () {
-    
+
   },
   components: {
     Navbar,

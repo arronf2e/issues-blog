@@ -8,6 +8,7 @@
           <p class="date">{{ post.date }}</p>
         </div>
         <div class="options">
+          
         </div>
       </div>
     </div>
@@ -57,6 +58,10 @@ export default {
 </script>
 <style lang="less">
 @import '../assets/less/color.less';
+.fa-icon {
+  width: auto;
+  height: 1em; /* or any other relative font sizes */
+}
 .list {
   &-post {
     padding: 10px;
@@ -76,6 +81,9 @@ export default {
         font-size: 12px;
         color: #333;
       }
+    }
+    .options {
+      height: 50px;
     }
   }
 }

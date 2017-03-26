@@ -8,9 +8,8 @@ import Vodal from 'vodal'
 import "vodal/fade.css"
 import "vodal/rotate.css"
 import Toast from './components/toast'
-import _ from 'lodash'
+import VueStar from 'vue-star'
 import 'prismjs/themes/prism.css'
-
 Toast.config({
   duration: 3000,
   position:'top center'
@@ -18,11 +17,10 @@ Toast.config({
 
 router.afterEach((to,from) => {
   window.scroll(0,0)
-}) 
-
+})
 Vue.use(Toast)
-Vue.use(_)
 Vue.component(Vodal.name, Vodal)
+Vue.component('VueStar', VueStar)
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({

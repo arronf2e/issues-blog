@@ -14,8 +14,8 @@
       </div>
       <div class="g-nav-wrap-r">
         <div class="search">
-          <img src="../assets/imgs/search.png" alt="">
-          <input type="text" placeholder="按回车搜索哦" @keyup.enter="searchFn" v-model="kw"/>
+          <!--<img src="../assets/imgs/search.png" alt="">-->
+          <!--<input type="text" placeholder="按回车搜索哦" @keyup.enter="searchFn" v-model="kw"/>-->
         </div>
         <div class="user">
           <button @click="showModal">登录</button>
@@ -114,7 +114,7 @@ export default {
   methods: {
     ...mapActions(['signUp', 'signIn']),
     searchFn() {
-      
+
     },
     showModal() {
       if(!this.show) {
@@ -170,7 +170,7 @@ export default {
   background: @mainColor;
   box-shadow: 0 1px 2px rgba(0,0,0,.05);
   color: #fff;
-  margin-bottom: -60px; 
+  margin-bottom: -60px;
   &-wrap {
     width: 1000px;
     height: 100%;
@@ -196,7 +196,7 @@ export default {
           display: flex;
           align-items: center;
           color: #fff;
-          text-decoration: none; 
+          text-decoration: none;
           padding: 0 24px;
           font-size: 18px;
           img {

@@ -13,6 +13,7 @@
       </p>
       <h3 class="post-date">{{ date | formateDate }}</h3>
       <article v-html="htmlFromMarkdown"></article>
+      <Share :href="href" :title="title"></Share>
     </div>
   </div>
 </template>
@@ -22,6 +23,8 @@ import conf from '@/config'
 import fm from 'front-matter'
 import marked from '@/utils/render.js'
 import Loading from '@/components/Loading'
+import Share from '@/components/Share'
+import VueStar from 'vue-star'
 export default {
   created () {
     this.getPost()
@@ -37,6 +40,13 @@ export default {
   computed: {
     htmlFromMarkdown () {
       return marked(this.content)
+    },
+    href() {
+      console.log(window.location.href)
+      return window.location.href
+    },
+    title() {
+      return document.title
     }
   },
   methods: {
@@ -51,7 +61,8 @@ export default {
           window.document.title = `${this.title} - ${conf.blogTitle}`
         },(err) => {
           console.log(`ERR: ${err}`)
-        })
+      })
+
     }
   },
   filters: {
@@ -65,7 +76,9 @@ export default {
     }
   },
   components: {
-    Loading
+    Loading,
+    VueStar,
+    Share
   }
 }
 </script>
@@ -95,6 +108,7 @@ export default {
       padding: 2px 5px;
       border: 1px solid #666;
       border-radius: 10px;
+      margin-right: 2px;
     }
   }
   article {
