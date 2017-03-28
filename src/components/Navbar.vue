@@ -8,7 +8,7 @@
             <span>首页</span>
           </router-link>
           <router-link to="/about" active-class="current" exact>
-            <span>关于</span>
+            <span>关于(这是一个还在开发的博客)</span>
           </router-link>
         </div>
       </div>
@@ -17,7 +17,7 @@
           <!--<img src="../assets/imgs/search.png" alt="">-->
           <!--<input type="text" placeholder="按回车搜索哦" @keyup.enter="searchFn" v-model="kw"/>-->
         </div>
-        <div class="user">
+        <!--<div class="user">
           <button @click="showModal">登录</button>
           <div class="dropdown">
             <span>Mouse over me</span>
@@ -25,7 +25,7 @@
               <p>Hello World!</p>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
     <vodal :show="show" animation="rotate" @hide="show = false">
