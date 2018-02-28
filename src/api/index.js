@@ -33,7 +33,6 @@ function postDate(val) {
   return val.split('～')[0]
 }
 function postName(val) {
-  // 正则不会-，- ，先用split了-，-，嘿嘿
   return val.split('～')[1].split('.')[0]
 }
 
