@@ -1,42 +1,23 @@
-<script src="../../../../test.js"></script>
 <template>
   <div id="app">
-    <Navbar></Navbar>
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
-    <Zfooter></Zfooter>
+    <img src="./assets/logo.png">
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar'
-import Zfooter from '@/components/Zfooter'
 export default {
-  name: 'app',
-  mounted () {
-
-  },
-  components: {
-    Navbar,
-    Zfooter
-  }
+  name: 'App'
 }
 </script>
 
-<style lang="less">
+<style>
 #app {
-  height: 100%;
-}
-.fade-enter-active, .fade-leave-active {
-    transition: all 0.3s ease;
-}
-.fade-enter {
-    opacity: 1;
-    transform: translate3d(0, 100px, 0);
-}
-.fade-leave-active {
-    opacity: 0;
-    transform: translate3d(100px, 0, 0);
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
